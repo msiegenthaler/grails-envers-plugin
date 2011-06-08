@@ -125,6 +125,7 @@ Plugin to integrate grails with Hibernate Envers
                 }
                 EnversPluginSupport.generateFindAllMethods(gc, sessionFactory)
                 EnversPluginSupport.generateAuditReaderMethods(gc, sessionFactory)
+				EnversPluginSupport.generateRevisionEntityMethod(gc, sessionFactory)
             }
         }
     }

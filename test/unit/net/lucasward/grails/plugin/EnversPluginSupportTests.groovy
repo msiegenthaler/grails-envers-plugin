@@ -22,6 +22,7 @@ import org.codehaus.groovy.grails.commons.DefaultGrailsClass
 import org.hibernate.envers.DefaultRevisionEntity
 import org.hibernate.envers.RevisionType
 import org.gmock.WithGMock
+import org.hibernate.Session;
 import org.hibernate.SessionFactory
 import grails.test.GrailsUnitTestCase
 import org.hibernate.envers.Audited
@@ -98,5 +99,15 @@ class EnversPluginSupportTests extends GrailsUnitTestCase {
         assert Customer.metaClass.getMetaMethod("getRevisions", []) != null
         assert Customer.metaClass.getMetaMethod("findAtRevision", [3]) != null
     }
+	
+	void testRevisionEntityMethods() {
+		mockDomain Customer
+		SessionFactory sessionFactory = mock(SessionFactory)
+		
+		GrailsDomainClass gdc = new DefaultGrailsDomainClass(Customer.class)
+		EnversPluginSupport.generateRevisionEntityMethod(gdc, sessionFactory)
+		assert Customer.metaClass.getMetaMethod("getRevisionEntity", []) != null
+		assert Customer.metaClass.getMetaMethod("getRevisionType", []) != null
+	}
 
 }

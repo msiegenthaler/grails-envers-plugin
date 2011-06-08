@@ -23,6 +23,11 @@ import java.util.concurrent.ConcurrentHashMap
 import org.hibernate.Session
 import org.hibernate.envers.AuditReaderFactory
 import org.hibernate.envers.Audited
+import org.hibernate.envers.configuration.AuditEntitiesConfiguration;
+import org.hibernate.envers.query.AuditEntity;
+import org.hibernate.envers.query.AuditQuery;
+import org.hibernate.envers.query.AuditQueryCreator;
+import org.hibernate.envers.query.criteria.AggregatedAuditExpression;
 
 import org.springframework.core.annotation.AnnotationUtils
 import org.codehaus.groovy.grails.commons.GrailsDomainClassProperty
@@ -105,6 +110,17 @@ class EnversPluginSupport {
             findAtRevision.query(delegate.id, revisionNumber)
         }
     }
+	
+	static generateRevisionEntityMethod(GrailsDomainClass gc, SessionFactory sessionFactory) {
+		def query = new GetRevisionEntityQuery(sessionFactory, gc.clazz)
+
+		gc.metaClass.getRevisionEntity = {
+			query.queryEntity(delegate)
+		}
+		gc.metaClass.getRevisionType = {
+			query.queryType(delegate)
+		}
+	}
 
     private static def generateFindAllMethod(GrailsDomainClassProperty prop, MetaClass mc, method) {
         def propertyName = prop.name

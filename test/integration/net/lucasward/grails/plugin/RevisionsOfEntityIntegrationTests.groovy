@@ -229,6 +229,23 @@ class RevisionsOfEntityIntegrationTests extends GrailsUnitTestCase {
 //        def revisions = User.findAllRevisionsByAddress(user.address.id)
 //        assertGormCustomerRevisions(revisions)
 //    }
+	
+	void testGetRevisionEntityOnUnsavedEntity() {
+		def customer = new Customer(name: 'Test User', email: 'test@test.com')
+		
+		assert customer.name == 'Test User'
+		assert customer.revisionEntity == null
+		assert customer.revisionType == null
+	}
+
+	void testGetRevisionEntityOnSavedEntity() {
+		def customer = create2CustomersInOneTransaction()[0]
+		
+		assert customer.name == 'Envers1'
+		assert customer.revisionEntity != null
+		assert !customer.revisionEntity.revisionDate.after(new Date()) 
+		assert customer.revisionType == RevisionType.ADD
+	}
 
     private def assertGormCustomerRevisions(List results) {
         assert results.size() == 3

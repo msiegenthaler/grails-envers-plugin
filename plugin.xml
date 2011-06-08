@@ -1,4 +1,4 @@
-<plugin name='envers' version='0.1.7' grailsVersion='1.3.7 &gt; *'>
+<plugin name='envers' version='0.1.8' grailsVersion='1.3.7 &gt; *'>
   <author>Lucas Ward</author>
   <title>Grails Envers Plugin</title>
   <description>\
@@ -6,6 +6,7 @@ Plugin to integrate grails with Hibernate Envers
 </description>
   <documentation>http://grails.org/plugin/envers</documentation>
   <resources>
+    <resource>BootStrap</resource>
     <resource>BuildConfig</resource>
     <resource>Config</resource>
     <resource>DataSource</resource>
