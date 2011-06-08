@@ -29,9 +29,6 @@ class HibernateConfiguredIntegrationTests {
 
 
         Book book = Book.findByTitle("Dance With Dragons")
-  //      assert book != null
-
-//        def results = Book.findAllRevisionsById(book.id)
-  //      assert results.size() == 1
+        assert book != null
     }
 }

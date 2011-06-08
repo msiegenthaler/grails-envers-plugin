@@ -31,5 +31,7 @@ grails.project.dependency.resolution = {
 		}
 		compile ('org.gmock:gmock:0.8.1')
 		compile ('joda-time:joda-time:1.6.2')
+		
+		runtime 'mysql:mysql-connector-java:5.1.13'
     }
 }
