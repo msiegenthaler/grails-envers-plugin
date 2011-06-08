@@ -29,7 +29,7 @@ grails.project.dependency.resolution = {
 		compile ('org.jboss.envers:jboss-envers:1.2.3-hibernate-3.3') {
 			transitive = false
 		}
-		compile ('org.gmock:gmock:0.8.0')
+		compile ('org.gmock:gmock:0.8.1')
 		compile ('joda-time:joda-time:1.6.2')
     }
 }
