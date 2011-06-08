@@ -25,8 +25,9 @@ import javax.persistence.Entity;
 @Entity(name="revinfo")
 @RevisionEntity(SpringSecurityRevisionListener.class)
 public class UserRevisionEntity extends DefaultRevisionEntity {
-
-    @Column(name="user_id")
+	private static final long serialVersionUID = 1L;
+	
+	@Column(name="user_id")
     Long userId;
 
     public long getUserId() {
